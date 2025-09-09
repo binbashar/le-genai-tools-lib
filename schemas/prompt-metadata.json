@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Leverage Prompt Metadata Schema",
+  "description": "Simple schema for prompt templates in the Binbash Leverage AI Prompt Library",
+  "type": "object",
+  "required": [
+    "name",
+    "description",
+    "category",
+    "use_cases",
+    "model_compatibility",
+    "effectiveness_rating",
+    "last_updated",
+    "author",
+    "tags",
+    "version"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the prompt"
+    },
+    "description": {
+      "type": "string",
+      "description": "Clear description of what this prompt does"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "leverage-cli",
+        "terraform-modules", 
+        "reference-architecture",
+        "documentation"
+      ]
+    },
+    "use_cases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "model_compatibility": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "gpt-5",
+          "gpt-4o",
+          "gpt-4-turbo",
+          "gpt-4",
+          "claude-4-sonnet",
+          "claude-4-haiku",
+          "claude-3.5-sonnet",
+          "claude-3.5-haiku",
+          "claude-3-opus",
+          "claude-3-sonnet",
+          "claude-3-haiku"
+        ]
+      }
+    },
+    "effectiveness_rating": {
+      "type": "number",
+      "minimum": 1.0,
+      "maximum": 10.0
+    },
+    "last_updated": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "author": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    }
+  }
+}

@@ -1,0 +1,241 @@
+# Binbash Leverage AI Prompt Library - Git Ignore Rules
+
+# Operating System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+.classpath
+
+# Cursor IDE specific
+.cursor/
+cursor.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# PyCharm
+.idea/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Node.js (for any JS tooling)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# AI and ML specific
+*.model
+*.h5
+*.pkl
+*.joblib
+models/
+checkpoints/
+
+# Secrets and sensitive data
+secrets/
+.secrets
+*.pem
+*.key
+*.crt
+*.env.local
+*.env.production
+.env.*.local
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Cloud provider credentials
+.aws/
+.azure/
+.gcp/
+*credentials*
+*secret*
+
+# Terraform (if any IaC examples are included)
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+*.tfvars
+!example.tfvars
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Coverage reports
+coverage/
+.nyc_output
+
+# Documentation build artifacts
+_build/
+.doctrees/
+docs/_build/
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Archive files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Windows
+ehthumbs.db
+Thumbs.db
+
+# Linux
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# macOS
+.AppleDouble
+.LSOverride
+Icon
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Cache directories
+.cache/
+.npm
+.eslintcache
+
+# User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Testing artifacts
+test-results/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Prompt development files (temporary)
+*.draft.md
+*.wip.md
+*.test.md
+experiments/
+sandbox/
+
+# Performance and analysis files
+performance-reports/
+analysis-results/
+benchmarks/
+
+# Local configuration overrides
+local.config.json
+local.settings.json
+.local/
+
+# Generated files
+generated/
+auto-generated/

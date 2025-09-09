@@ -1,0 +1,124 @@
+name: 🐛 Bug Report
+description: Report a bug or issue with a prompt template
+title: "[Bug]: "
+labels: ["bug", "triage-needed"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a bug! Please provide as much detail as possible to help us understand and reproduce the issue.
+
+  - type: input
+    id: prompt-name
+    attributes:
+      label: Prompt Template
+      description: Which prompt template is affected?
+      placeholder: "e.g., Terraform Module Generator"
+    validations:
+      required: true
+
+  - type: input
+    id: prompt-path
+    attributes:
+      label: File Path
+      description: Path to the affected prompt file
+      placeholder: "e.g., prompts/infrastructure/terraform/module-generator.md"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ai-model
+    attributes:
+      label: AI Model Used
+      description: Which AI model were you using when the issue occurred?
+      options:
+        - GPT-4
+        - GPT-4 Turbo  
+        - GPT-4o
+        - Claude 3 Haiku
+        - Claude 3 Sonnet
+        - Claude 3 Opus
+        - Claude 3.5 Sonnet
+        - Claude 3.5 Haiku
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: Describe what happened and what you expected to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this issue?
+      placeholder: |
+        1. Use prompt with input: "..."
+        2. AI model responds with: "..."
+        3. Expected behavior: "..."
+        4. Actual behavior: "..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: input-example
+    attributes:
+      label: Input Example
+      description: Provide the input you gave to the AI model
+      placeholder: Paste your input here
+    validations:
+      required: false
+
+  - type: textarea
+    id: output-example
+    attributes:
+      label: Problematic Output
+      description: Provide the problematic output from the AI model
+      placeholder: Paste the AI's response here
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected-output
+    attributes:
+      label: Expected Output
+      description: What output did you expect instead?
+      placeholder: Describe what the AI should have responded with
+    validations:
+      required: false
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Issue Severity
+      description: How severe is this issue?
+      options:
+        - Low - Minor inconvenience or cosmetic issue
+        - Medium - Significant impact on prompt effectiveness
+        - High - Prompt produces incorrect or harmful output
+        - Critical - Security concern or major functionality broken
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here
+      placeholder: Any additional information that might help us understand the issue
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

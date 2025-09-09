@@ -1,0 +1,108 @@
+# Pre-commit hooks for Binbash Leverage AI Prompt Library
+# See https://pre-commit.com for more information
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: \.md$
+      - id: end-of-file-fixer
+        exclude: \.md$
+      - id: check-yaml
+        args: ['--unsafe']  # Allow custom tags in YAML frontmatter
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+
+  - repo: https://github.com/psf/black
+    rev: 23.9.1
+    hooks:
+      - id: black
+        language_version: python3.11
+        files: ^tools/.*\.py$
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        files: ^tools/.*\.py$
+        args: ['--max-line-length=100', '--extend-ignore=E203,W503']
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        files: ^tools/.*\.py$
+        args: ['--profile', 'black', '--line-length=100']
+
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.32.0
+    hooks:
+      - id: yamllint
+        args: ['-d', '{extends: relaxed, rules: {line-length: {max: 120}}}']
+        files: \.ya?ml$
+        exclude: ^\.github/workflows/.*\.yml$  # GitHub Actions have longer lines
+
+  - repo: local
+    hooks:
+      - id: validate-prompt-metadata
+        name: Validate Prompt Metadata
+        entry: python tools/validation/validate_prompt.py
+        language: system
+        files: ^prompts/.*\.md$
+        pass_filenames: true
+        args: ['--verbose']
+
+      - id: check-prompt-cross-references
+        name: Check Prompt Cross References
+        entry: python tools/validation/check_cross_references.py
+        language: system
+        files: ^prompts/.*\.md$
+        pass_filenames: false
+
+      - id: validate-schemas
+        name: Validate JSON Schemas
+        entry: bash -c 'for schema in schemas/*.json; do echo "Validating $schema"; python -m json.tool "$schema" > /dev/null || exit 1; done'
+        language: system
+        files: ^schemas/.*\.json$
+        pass_filenames: false
+
+      - id: check-sensitive-info
+        name: Check for Sensitive Information
+        entry: bash -c 'if grep -r -E "(password|secret|key|token).*[:=].*[a-zA-Z0-9]{20,}" --include="*.md" prompts/ | grep -v -E "(password_policy|api-key|access-key|example|placeholder|YOUR_|\\$\\{|\\[.*\\])" | head -3; then echo "Potential sensitive information found in prompts"; exit 1; fi'
+        language: system
+        files: ^prompts/.*\.md$
+        pass_filenames: false
+
+      - id: markdown-lint
+        name: Markdown Lint
+        entry: bash -c 'if command -v markdownlint >/dev/null 2>&1; then markdownlint "$@"; else echo "markdownlint not installed, skipping"; fi'
+        language: system
+        files: \.md$
+        args: ['--config', '.markdownlint.json']
+
+      - id: check-file-naming
+        name: Check File Naming Convention
+        entry: bash -c 'for file in "$@"; do basename="$(basename "$file" .md)"; if [[ ! "$basename" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]; then echo "File $file does not follow kebab-case naming convention"; exit 1; fi; done'
+        language: system
+        files: ^prompts/.*\.md$
+        pass_filenames: true
+
+      - id: update-effectiveness-report
+        name: Update Effectiveness Report
+        entry: python tools/analysis/effectiveness_report.py
+        language: system
+        files: ^prompts/.*\.md$
+        args: ['--output', 'reports/effectiveness-summary.json']
+        pass_filenames: false
+
+# Configuration for specific tools
+exclude: |
+  (?x)(
+      ^initialization\.md$|
+      ^CHANGELOG\.md$|
+      ^\.github/workflows/.*\.yml$
+  )

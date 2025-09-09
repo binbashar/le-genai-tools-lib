@@ -1,0 +1,152 @@
+name: ✨ Feature Request
+description: Suggest a new prompt template or enhancement
+title: "[Feature]: "
+labels: ["enhancement", "triage-needed"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! Please provide detailed information to help us understand your request.
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Feature Type
+      description: What type of feature are you requesting?
+      options:
+        - New prompt template
+        - Enhancement to existing prompt
+        - New validation tool
+        - Documentation improvement
+        - New utility script
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: input
+    id: feature-category
+    attributes:
+      label: Category
+      description: Which category does this feature belong to?
+      placeholder: "e.g., infrastructure/terraform, agents/communication, documentation/api-docs"
+    validations:
+      required: false
+
+  - type: textarea
+    id: problem-description
+    attributes:
+      label: Problem Description
+      description: What problem does this feature solve? What use case does it address?
+      placeholder: Describe the problem or need this feature would address
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: Describe your proposed solution in detail
+      placeholder: |
+        For prompt templates, describe:
+        - What the prompt should do
+        - Target AI models
+        - Expected input/output format
+        - Key use cases
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use Cases
+      description: Provide specific use cases or scenarios where this feature would be valuable
+      placeholder: |
+        1. Use case 1: Description
+        2. Use case 2: Description
+        3. Use case 3: Description
+    validations:
+      required: true
+
+  - type: dropdown
+    id: target-models
+    attributes:
+      label: Target AI Models (for prompt templates)
+      description: Which AI models should this prompt work with?
+      multiple: true
+      options:
+        - GPT-4
+        - GPT-4 Turbo
+        - GPT-4o
+        - Claude 3 Haiku
+        - Claude 3 Sonnet
+        - Claude 3 Opus
+        - Claude 3.5 Sonnet
+        - Claude 3.5 Haiku
+        - All models
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Would be helpful
+        - High - Important for my workflow
+        - Critical - Blocking my work
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Have you considered any alternative approaches?
+      placeholder: Describe any workarounds or alternative solutions you've considered
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples
+      description: Provide examples of similar features or implementations
+      placeholder: |
+        Links to similar prompts, tools, or implementations that inspired this request
+
+  - type: input
+    id: integration
+    attributes:
+      label: Integration Requirements
+      description: Does this feature need to integrate with specific tools or services?
+      placeholder: "e.g., Terraform, AWS CLI, Leverage CLI, Docker"
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context, screenshots, or examples
+      placeholder: Any additional information that would help us understand your request
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Would you be willing to contribute to this feature?
+      options:
+        - label: I would be willing to help implement this feature
+          required: false
+        - label: I can provide testing and feedback
+          required: false
+        - label: I can help with documentation
+          required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

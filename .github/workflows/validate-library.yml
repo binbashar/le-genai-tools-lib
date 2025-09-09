@@ -1,0 +1,243 @@
+name: 🤖 Validate Prompt Library
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'prompts/**'
+      - 'schemas/**'
+      - 'tools/**'
+      - '.github/workflows/**'
+
+jobs:
+  validate-structure:
+    name: 📁 Validate Library Structure
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          
+      - name: Validate library structure
+        run: |
+          python tools/validation/validate_library.py --json-output validation-results.json
+          
+      - name: Upload validation results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: validation-results
+          path: validation-results.json
+
+  validate-prompts:
+    name: 🔍 Validate Individual Prompts
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          
+      - name: Find changed prompts
+        id: changed-files
+        uses: tj-actions/changed-files@v40
+        with:
+          files: |
+            prompts/**/*.md
+            
+      - name: Validate changed prompts
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          echo "Validating changed prompts:"
+          echo "${{ steps.changed-files.outputs.all_changed_files }}"
+          
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "Validating: $file"
+            python tools/validation/validate_prompt.py "$file" --verbose
+          done
+          
+      - name: Validate all prompts (full validation)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          find prompts -name "*.md" -type f | while read file; do
+            echo "Validating: $file"
+            python tools/validation/validate_prompt.py "$file"
+          done
+
+  schema-validation:
+    name: 📋 Schema Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install AJV CLI for schema validation
+        run: npm install -g ajv-cli
+        
+      - name: Validate JSON schemas
+        run: |
+          echo "Validating JSON schemas..."
+          for schema in schemas/*.json; do
+            echo "Validating schema: $schema"
+            ajv validate -s "$schema" --spec=draft7
+          done
+
+  generate-report:
+    name: 📊 Generate Effectiveness Report
+    runs-on: ubuntu-latest
+    needs: [validate-structure, validate-prompts]
+    if: always()
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          
+      - name: Generate effectiveness report
+        run: |
+          python tools/analysis/effectiveness_report.py --output effectiveness-report.json
+          
+      - name: Upload effectiveness report
+        uses: actions/upload-artifact@v3
+        with:
+          name: effectiveness-report
+          path: effectiveness-report.json
+          
+      - name: Comment effectiveness summary on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            try {
+              const report = JSON.parse(fs.readFileSync('effectiveness-report.json', 'utf8'));
+              const overall = report.overall || {};
+              
+              const comment = `## 🤖 Prompt Library Effectiveness Report
+              
+              ### Summary
+              - **Total Prompts**: ${overall.total_prompts || 0}
+              - **Average Rating**: ${(overall.average_rating || 0).toFixed(2)}/10
+              - **Top Performers**: ${(report.top_performers || []).length} prompts rated 9.0+
+              - **Improvement Candidates**: ${(report.improvement_candidates || []).length} prompts below 6.0
+              
+              ### Rating Distribution
+              ${Object.entries(overall.ratings_distribution || {}).map(([range, count]) => 
+                `- **${range}**: ${count} prompts`
+              ).join('\n')}
+              
+              ### Recommendations
+              - Review improvement candidates for potential updates
+              - Consider expanding high-performing prompt patterns
+              - Validate new prompts against top-performer characteristics
+              
+              *Report generated automatically by GitHub Actions*`;
+              
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            } catch (error) {
+              console.log('Could not generate report comment:', error.message);
+            }
+
+  check-links:
+    name: 🔗 Check Documentation Links
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install markdown-link-check
+        run: npm install -g markdown-link-check
+        
+      - name: Check links in README
+        run: |
+          markdown-link-check README.md --config .github/workflows/link-check-config.json
+          
+      - name: Check links in CONTRIBUTING
+        run: |
+          markdown-link-check CONTRIBUTING.md --config .github/workflows/link-check-config.json
+          
+      - name: Check links in documentation
+        run: |
+          find docs -name "*.md" -exec markdown-link-check {} --config .github/workflows/link-check-config.json \;
+
+  security-scan:
+    name: 🔒 Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          
+      - name: Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+          
+      - name: Check for sensitive information
+        run: |
+          echo "Checking for potential sensitive information..."
+          
+          # Check for common patterns that might indicate secrets
+          if grep -r -E "(password|secret|key|token)" --include="*.md" prompts/ | grep -v -E "(password_policy|api-key|access-key)" | head -5; then
+            echo "⚠️ Found potential sensitive information in prompts"
+            echo "Please review and ensure no actual secrets are committed"
+          else
+            echo "✅ No obvious sensitive information detected"
+          fi
