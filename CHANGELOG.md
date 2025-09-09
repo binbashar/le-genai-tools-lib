@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the Binbash Leverage AI Prompt Library will be documented in this file.
+All notable changes to the binbash Leverage AI Prompt Library will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -55,12 +55,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2024-01-15
 
 ### Added
-- Initial release of the Binbash Leverage AI Prompt Library
+- Initial release of the binbash Leverage AI Prompt Library
 - Core library structure with organized categories
 - JSON schemas for metadata validation
 - Basic prompt templates for infrastructure and documentation
 - Validation tooling and quality assurance processes
-- Integration with Binbash Leverage ecosystem
+- Integration with binbash Leverage ecosystem
 
 ### Categories Established
 - `infrastructure/` - Terraform, AWS, and validation prompts

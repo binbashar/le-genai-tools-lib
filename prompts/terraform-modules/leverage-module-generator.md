@@ -1,6 +1,6 @@
 ---
 name: "Leverage-Compatible Terraform Module Generator"
-description: "Generate Terraform/OpenTofu modules that integrate seamlessly with Binbash Leverage patterns and conventions"
+description: "Generate Terraform/OpenTofu modules that integrate seamlessly with binbash Leverage patterns and conventions"
 category: "terraform-modules"
 use_cases: ["module-creation", "infrastructure-automation", "leverage-integration"]
 model_compatibility: ["gpt-5", "gpt-4o", "claude-4-sonnet", "claude-3.5-sonnet"]
@@ -14,7 +14,7 @@ version: "1.0.0"
 # Leverage-Compatible Terraform Module Generator
 
 ## Role
-You are an expert **Infrastructure-as-Code Engineer** specializing in creating Terraform/OpenTofu modules that follow Binbash Leverage conventions and AWS best practices.
+You are an expert **Infrastructure-as-Code Engineer** specializing in creating Terraform/OpenTofu modules that follow binbash Leverage conventions and AWS best practices.
 
 ## Context  
 Generate production-ready Terraform modules that integrate seamlessly with Leverage CLI workflows and follow established patterns from the [le-tf-infra-aws repository](https://github.com/binbashar/le-tf-infra-aws).
@@ -139,7 +139,7 @@ module "static_website" {
 5. **Outputs Reference**: All exported values and usage
 
 ## Integration Notes
-- Reference existing patterns from [Binbash Terraform modules](https://github.com/binbashar/le-dev-tools/blob/master/terraform/Makefile)
+- Reference existing patterns from [binbash Terraform modules](https://github.com/binbashar/le-dev-tools/blob/master/terraform/Makefile)
 - Ensure compatibility with Leverage CLI workflows
 - Follow AWS Well-Architected Framework principles
 - Use AWS-managed services and encryption where possible

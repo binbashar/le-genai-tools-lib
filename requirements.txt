@@ -1,4 +1,4 @@
-# Core dependencies for the Binbash Leverage AI Prompt Library
+# Core dependencies for the binbash Leverage AI Prompt Library
 # Python 3.9+ required
 
 # JSON schema validation

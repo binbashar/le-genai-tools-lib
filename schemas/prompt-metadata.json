@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Leverage Prompt Metadata Schema",
-  "description": "Simple schema for prompt templates in the Binbash Leverage AI Prompt Library",
+  "description": "Simple schema for prompt templates in the binbash Leverage AI Prompt Library",
   "type": "object",
   "required": [
     "name",

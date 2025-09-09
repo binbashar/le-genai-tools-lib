@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the **Binbash Leverage AI Prompt Library** - a comprehensive collection of prompt engineering templates, context engineering patterns, and multi-agent system designs for DevOps, Infrastructure-as-Code, and Cloud solutions. The library follows a structured approach to prompt engineering with comprehensive metadata for easy AI tool integration.
+This is the **binbash Leverage AI Prompt Library** - a comprehensive collection of prompt engineering templates, context engineering patterns, and multi-agent system designs for DevOps, Infrastructure-as-Code, and Cloud solutions. The library follows a structured approach to prompt engineering with comprehensive metadata for easy AI tool integration.
 
 ## Repository Structure
 
@@ -114,7 +114,7 @@ safety_considerations:
 
 ## Code Architecture Patterns
 
-### Binbash Leverage Integration
+### binbash Leverage Integration
 - All infrastructure prompts align with Leverage Reference Architecture
 - Use consistent Terraform/OpenTofu patterns with proper variable validation
 - Follow environment-specific configurations (dev/staging/prod)

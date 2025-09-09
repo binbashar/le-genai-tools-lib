@@ -1,13 +1,13 @@
-# 🚀 Binbash Leverage AI Prompt Library
+# 🚀 binbash Leverage AI Prompt Library
 
-> A curated collection of AI prompts specifically designed for the Binbash Leverage Framework ecosystem - helping teams build, deploy, and manage AWS infrastructure with AI assistance.
+> A curated collection of AI prompts specifically designed for the binbash Leverage Framework ecosystem - helping teams build, deploy, and manage AWS infrastructure with AI assistance.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Leverage](https://img.shields.io/badge/leverage-powered-blue)](https://leverage.binbash.co/)
 
 ## 🎯 What is This?
 
-This library provides **battle-tested AI prompts** for working with the [Binbash Leverage Framework](https://leverage.binbash.co/), including:
+This library provides **battle-tested AI prompts** for working with the [binbash Leverage Framework](https://leverage.binbash.co/), including:
 
 - **🔧 Leverage CLI**: Smart assistance for project setup, environment management, and automation
 - **🏗️ Terraform Modules**: Generation, validation, and documentation of Leverage-compatible modules  
@@ -92,7 +92,7 @@ This library is designed to work seamlessly with:
 
 - **[Leverage CLI](https://github.com/binbashar/leverage)** - Project orchestration and automation
 - **[Terraform Reference Architecture](https://github.com/binbashar/le-tf-infra-aws)** - AWS infrastructure patterns
-- **[Binbash Terraform Modules](https://github.com/binbashar/le-dev-tools/blob/master/terraform/Makefile)** - Reusable infrastructure components
+- **[binbash Terraform Modules](https://github.com/binbashar/le-dev-tools/blob/master/terraform/Makefile)** - Reusable infrastructure components
 - **[Leverage Documentation](https://leverage.binbash.co/)** - Framework guides and best practices
 
 ## 🤝 Contributing
@@ -113,7 +113,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## 🙏 Acknowledgments
 
-Built by the [Binbash](https://www.binbash.co/) team and Leverage community contributors.
+Built by the [binbash](https://www.binbash.co/) team and Leverage community contributors.
 
 ---
 

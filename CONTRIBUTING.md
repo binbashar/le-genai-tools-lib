@@ -1,4 +1,4 @@
-# Contributing to Binbash Leverage AI Prompt Library
+# Contributing to binbash Leverage AI Prompt Library
 
 Thanks for helping improve AI-powered infrastructure automation! This guide will help you contribute effectively.
 
