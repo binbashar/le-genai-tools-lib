@@ -10,7 +10,7 @@
 This library provides **battle-tested AI prompts** for working with the [binbash Leverage Framework](https://leverage.binbash.co/), including:
 
 - **🔧 Leverage CLI**: Smart assistance for project setup, environment management, and automation
-- **🏗️ Terraform Modules**: Generation, validation, and documentation of Leverage-compatible modules  
+- **🏗️ OpenTofu/Terraform Modules**: Generation, validation, and documentation of Leverage-compatible modules  
 - **☁️ Reference Architecture**: Guidance for AWS Landing Zones, Data Lakes, and GenAI stacks
 - **📚 Documentation**: Creating and maintaining technical documentation for Leverage projects
 
@@ -21,7 +21,7 @@ Each prompt is optimized for use with modern AI coding assistants like **Cursor*
 ```
 ├── prompts/
 │   ├── leverage-cli/          # Leverage CLI automation and assistance
-│   ├── terraform-modules/     # Terraform/OpenTofu module development  
+│   ├── terraform-modules/     # OpenTofu/Terraform module development  
 │   ├── reference-architecture/ # AWS architecture patterns and guidance
 │   └── documentation/         # Technical writing and documentation
 ├── examples/                  # Real-world usage examples
@@ -35,7 +35,7 @@ Each prompt is optimized for use with modern AI coding assistants like **Cursor*
 
 Navigate to the relevant category:
 - Need help with Leverage CLI? → `prompts/leverage-cli/`
-- Building Terraform modules? → `prompts/terraform-modules/`  
+- Building OpenTofu/Terraform modules? → `prompts/terraform-modules/`  
 - Designing AWS architecture? → `prompts/reference-architecture/`
 - Writing documentation? → `prompts/documentation/`
 
