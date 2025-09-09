@@ -91,7 +91,7 @@ Streamline documentation with:
 This library is designed to work seamlessly with:
 
 - **[Leverage CLI](https://github.com/binbashar/leverage)** - Project orchestration and automation
-- **[Terraform Reference Architecture](https://github.com/binbashar/le-tf-infra-aws)** - AWS infrastructure patterns
+- **[Terraform/OpenTofu Reference Architecture](https://github.com/binbashar/le-tf-infra-aws)** - AWS infrastructure patterns
 - **[binbash Terraform Modules](https://github.com/binbashar/le-dev-tools/blob/master/terraform/Makefile)** - Reusable infrastructure components
 - **[Leverage Documentation](https://leverage.binbash.co/)** - Framework guides and best practices
 
