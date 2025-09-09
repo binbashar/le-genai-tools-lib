@@ -111,6 +111,24 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 MIT License - see [LICENSE](LICENSE) for details.
 
+## 📚 References & Inspiration
+
+### Community Prompt Collections
+
+These repositories provide a variety of example prompts for different roles and tasks, which helped spark ideas for our own prompts. However, our internal library is tailored to our specific use cases and products, and we enrich each entry with comprehensive metadata (which is something the general "awesome" lists typically lack):
+
+- **[Awesome Claude Prompts](https://github.com/langgptai/awesome-claude-prompts)** - Claude-specific prompt examples
+- **[LLM Prompt Library](https://github.com/abilzerian/LLM-Prompt-Library)** - General LLM prompt collection
+- **[Awesome ChatGPT Prompts](https://github.com/f/awesome-chatgpt-prompts)** - ChatGPT prompt examples
+- **[AI Boost Awesome Prompts](https://github.com/ai-boost/awesome-prompts)** - Curated AI prompt collection
+
+### Guides and Articles
+
+- **[OpenAI's Prompt Best Practices](https://help.openai.com/)** - Official guidance on effective prompting
+- **Context Engineering Articles** ([O'Reilly](https://www.oreilly.com/), [Medium](https://medium.com/)) - Industry insights that informed our approach and underscore best practices
+
+These resources helped shape our methodology while we focused on creating Leverage-specific, production-tested prompts with detailed effectiveness ratings and integration guidance.
+
 ## 🙏 Acknowledgments
 
 Built by the [binbash](https://www.binbash.co/) team and Leverage community contributors.
